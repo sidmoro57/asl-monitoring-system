@@ -1,0 +1,63 @@
+# Configuration DEMO des services ASL à monitorer
+# Cette configuration utilise des endpoints publics pour démonstration
+
+services:
+  # Service de test qui répond toujours 200
+  - name: "HTTPBin Status 200"
+    url: "https://httpbin.org/status/200"
+    method: "GET"
+    expected_status: 200
+    timeout: 10
+    critical: true
+  
+  # Service de test qui répond toujours 404 (pour tester les alertes)  
+  - name: "HTTPBin Status 404 (Test Alert)"
+    url: "https://httpbin.org/status/404"
+    method: "GET"
+    expected_status: 200  # Attend 200 mais reçoit 404 -> alerte
+    timeout: 10
+    critical: false
+    
+  # Remplacer ces exemples par vos vrais services:
+  # - name: "Mon API Production"
+  #   url: "https://api.mondomaine.com/health"
+  #   method: "GET"
+  #   expected_status: 200
+  #   timeout: 10
+  #   critical: true
+
+# Configuration du monitoring
+monitoring:
+  # Intervalle de vérification (secondes)
+  check_interval: 20
+  
+  # Nombre d'échecs avant alerte
+  failure_threshold: 2
+  
+  # Timeout par défaut pour les requêtes (secondes)
+  default_timeout: 10
+
+# Configuration Slack
+slack:
+  # Token du bot Slack (à définir dans .env)
+  # SLACK_BOT_TOKEN=xoxb-your-token
+  
+  # Canal pour les alertes
+  channel: "#asl-alerts"
+  
+  # Activer les notifications Slack
+  enabled: false  # Mettre à true après avoir configuré le token
+  
+  # Mentionner @channel pour les services critiques
+  mention_channel: true
+
+# Configuration des logs
+logging:
+  # Niveau de log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: "INFO"
+  
+  # Fichier de log
+  file: "logs/monitoring.log"
+  
+  # Dossier pour l'historique des incidents
+  incidents_dir: "incidents"
