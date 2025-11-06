@@ -1,0 +1,58 @@
+# Configuration des services ASL à monitorer
+services:
+  - name: "API Production"
+    url: "https://api.example.com/health"
+    method: "GET"
+    expected_status: 200
+    timeout: 10
+    critical: true
+    
+  - name: "Web Application"
+    url: "https://app.example.com/health"
+    method: "GET"
+    expected_status: 200
+    timeout: 10
+    critical: true
+    
+  - name: "Database Service"
+    url: "https://db.example.com/ping"
+    method: "GET"
+    expected_status: 200
+    timeout: 5
+    critical: true
+
+# Configuration du monitoring
+monitoring:
+  # Intervalle de vérification (secondes)
+  check_interval: 20
+  
+  # Nombre d'échecs avant alerte
+  failure_threshold: 2
+  
+  # Timeout par défaut pour les requêtes (secondes)
+  default_timeout: 10
+
+# Configuration Slack
+slack:
+  # Token du bot Slack (à définir dans .env)
+  # SLACK_BOT_TOKEN=xoxb-your-token
+  
+  # Canal pour les alertes
+  channel: "#asl-alerts"
+  
+  # Activer les notifications Slack
+  enabled: true
+  
+  # Mentionner @channel pour les services critiques
+  mention_channel: true
+
+# Configuration des logs
+logging:
+  # Niveau de log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: "INFO"
+  
+  # Fichier de log
+  file: "logs/monitoring.log"
+  
+  # Dossier pour l'historique des incidents
+  incidents_dir: "incidents"

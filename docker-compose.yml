@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  asl-monitor:
+    build: .
+    container_name: asl-monitoring
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Persister les logs et incidents
+      - ./logs:/app/logs
+      - ./incidents:/app/incidents
+      # Monter la configuration (pour modifications sans rebuild)
+      - ./config.yaml:/app/config.yaml:ro
+    environment:
+      - TZ=Europe/Paris
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
