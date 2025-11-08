@@ -2,6 +2,12 @@
 
 A monitoring system for ASL (American Sign Language) applications with Slack integration.
 
+## 🚨 PUSH BLOQUÉ? → [START_HERE.md](START_HERE.md) 🚨
+
+Si votre push a été bloqué par GitHub à cause de secrets détectés, **lisez immédiatement [START_HERE.md](START_HERE.md)** pour la solution rapide!
+
+---
+
 ## 🚨 Important: Secret Management
 
 **This repository uses GitHub push protection to prevent accidental exposure of secrets.**
