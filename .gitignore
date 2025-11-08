@@ -32,3 +32,9 @@ build/
 # OS files
 Thumbs.db
 desktop.ini
+
+# Data files
+data/
+*.jsonl
+*.db
+*.sqlite
