@@ -1,34 +1,21 @@
-# Environment variables and secrets
-.env
-.env.local
-.env.*.local
-secrets/
-*.key
-*.pem
-*.p12
-*.pfx
-
-# IDE and Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Dependencies
-node_modules/
-venv/
-env/
+﻿# Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+asl-monitoring-env/
 
-# Build artifacts
-dist/
-build/
-*.egg-info/
+# IDE
+.vscode/settings.json
+
+# SECRETS - JAMAIS COMMITTER
+.env
+*secret*
+*token*
+*credential*
+
+# Gros fichiers
+*.msi
+*.exe
+
+# Logs
 *.log
-
-# OS files
-Thumbs.db
-desktop.ini
