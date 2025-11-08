@@ -40,23 +40,54 @@ cp .env.example .env
 nano .env
 ```
 
-### 3. Configure Your Secrets
+### 3. Install Dependencies
+
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+```
+
+### 4. Configure Your Secrets
 
 Add your actual values to `.env`:
 
 ```bash
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 SLACK_API_TOKEN=xoxb-your-actual-token-here
+CHECK_INTERVAL=60  # Optional: check interval in seconds (default: 60)
 ```
+
+### 5. Run the Monitoring Application
+
+```bash
+# Start the monitoring system
+python3 app.py
+```
+
+The application will:
+- Start monitoring the ASL system
+- Send periodic health checks
+- Notify Slack when issues are detected
+- Log all activity to `asl_monitoring.log`
 
 ## Files in This Repository
 
+- **`app.py`** - Main ASL monitoring application
+- **`test_app.py`** - Unit tests for the monitoring application
+- **`requirements.txt`** - Python dependencies
 - **`.env.example`** - Template for environment variables (safe to commit)
 - **`.env`** - Your actual secrets (never commit this - it's gitignored)
 - **`fix_and_push.ps1`** - PowerShell script for git operations with Slack notifications
 - **`docs/API.md`** - API documentation with integration examples
 - **`SECURITY.md`** - Security best practices and secret handling guide
 - **`GIT_CLEANUP_GUIDE.md`** - How to remove secrets from git history
+
+## Running Tests
+
+```bash
+# Run all unit tests
+python3 test_app.py -v
+```
 
 ## Using the Scripts
 
