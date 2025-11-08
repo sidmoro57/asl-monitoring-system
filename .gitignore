@@ -1,0 +1,34 @@
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+*.log
+
+# OS files
+Thumbs.db
+desktop.ini
