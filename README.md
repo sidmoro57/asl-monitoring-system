@@ -98,6 +98,7 @@ See the full guide: **[GIT_CLEANUP_GUIDE.md](GIT_CLEANUP_GUIDE.md)**
 ## Documentation
 
 - **[API Documentation](docs/API.md)** - Integration examples and API reference
+- **[Browser Scripts Guide](docs/BROWSER_SCRIPTS.md)** - Browser-based monitoring and safety features
 - **[Security Guide](SECURITY.md)** - Best practices for handling secrets
 - **[Git Cleanup Guide](GIT_CLEANUP_GUIDE.md)** - Remove secrets from history
 
