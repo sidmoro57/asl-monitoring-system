@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Monitoring System - Real-time Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖥️ ASL Monitoring System</h1>
+            <p class="subtitle">Real-time Application & System Monitoring</p>
+            <div class="status-bar">
+                <span id="status-indicator" class="status online">● Online</span>
+                <span id="last-update">Last update: Never</span>
+            </div>
+        </header>
+
+        <div class="controls">
+            <button id="refresh-btn" class="btn btn-primary">🔄 Refresh Now</button>
+            <button id="toggle-monitoring-btn" class="btn btn-secondary">⏸️ Pause Monitoring</button>
+            <label class="toggle-label">
+                Auto-refresh:
+                <input type="checkbox" id="auto-refresh-toggle" checked>
+            </label>
+        </div>
+
+        <div class="metrics-grid">
+            <!-- CPU Metrics -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h2>💻 CPU Usage</h2>
+                    <span id="cpu-status" class="badge badge-success">Normal</span>
+                </div>
+                <div class="metric-value-large">
+                    <span id="cpu-usage">--</span>%
+                </div>
+                <div class="metric-details">
+                    <div class="detail-row">
+                        <span>CPU Cores:</span>
+                        <span id="cpu-count">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Frequency:</span>
+                        <span id="cpu-freq">--</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div id="cpu-progress" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Memory Metrics -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h2>🧠 Memory Usage</h2>
+                    <span id="memory-status" class="badge badge-success">Normal</span>
+                </div>
+                <div class="metric-value-large">
+                    <span id="memory-usage">--</span>%
+                </div>
+                <div class="metric-details">
+                    <div class="detail-row">
+                        <span>Used:</span>
+                        <span id="memory-used">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Available:</span>
+                        <span id="memory-available">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Total:</span>
+                        <span id="memory-total">--</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div id="memory-progress" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Disk Metrics -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h2>💾 Disk Usage</h2>
+                    <span id="disk-status" class="badge badge-success">Normal</span>
+                </div>
+                <div id="disk-partitions">
+                    <div class="metric-value">No data</div>
+                </div>
+            </div>
+
+            <!-- Network Metrics -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h2>🌐 Network I/O</h2>
+                </div>
+                <div class="metric-details">
+                    <div class="detail-row">
+                        <span>📤 Sent:</span>
+                        <span id="network-sent">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>📥 Received:</span>
+                        <span id="network-recv">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Packets Sent:</span>
+                        <span id="packets-sent">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Packets Received:</span>
+                        <span id="packets-recv">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Info -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h2>⚙️ System Information</h2>
+                </div>
+                <div class="metric-details">
+                    <div class="detail-row">
+                        <span>Uptime:</span>
+                        <span id="system-uptime">--</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Boot Time:</span>
+                        <span id="boot-time">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="metric-card alert-card">
+                <div class="metric-header">
+                    <h2>⚠️ Recent Alerts</h2>
+                    <span id="alert-count" class="badge badge-info">0</span>
+                </div>
+                <div id="alerts-container" class="alerts-list">
+                    <p class="no-alerts">No recent alerts</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>ASL Monitoring System v1.0 | Updates every <span id="refresh-interval">5</span> seconds</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

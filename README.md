@@ -1,6 +1,26 @@
 # ASL Monitoring System
 
-A monitoring system for ASL (American Sign Language) applications with Slack integration.
+A real-time monitoring system for ASL (American Sign Language) applications with live dashboard, metrics collection, and Slack integration.
+
+## 🚀 Features
+
+### Real-time Monitoring Dashboard
+- **Live Metrics**: CPU, Memory, Disk, and Network monitoring
+- **Interactive UI**: Web-based dashboard with real-time updates
+- **Visual Alerts**: Color-coded status indicators and progress bars
+- **Historical Data**: Track metrics over time with data persistence
+
+### Intelligent Alerting
+- **Slack Integration**: Instant notifications when thresholds are exceeded
+- **Configurable Thresholds**: Customize alert levels for all metrics
+- **Alert Management**: Cooldown periods to prevent notification spam
+- **Alert History**: Track all alerts in the dashboard
+
+### RESTful API
+- Submit custom metrics from your applications
+- Retrieve current and historical data
+- Configure alert thresholds programmatically
+- Health check endpoints
 
 ## 🚨 PUSH BLOQUÉ? → [START_HERE.md](START_HERE.md) 🚨
 
@@ -29,7 +49,13 @@ git clone https://github.com/sidmoro57/asl-monitoring-system.git
 cd asl-monitoring-system
 ```
 
-### 2. Set Up Environment Variables
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Set Up Environment Variables
 
 ```bash
 # Copy the example environment file
@@ -40,25 +66,89 @@ cp .env.example .env
 nano .env
 ```
 
-### 3. Configure Your Secrets
-
-Add your actual values to `.env`:
+### 4. Start the Monitoring System
 
 ```bash
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
-SLACK_API_TOKEN=xoxb-your-actual-token-here
+python app.py
 ```
+
+### 5. Access the Dashboard
+
+Open your browser and navigate to:
+```
+http://localhost:5000
+```
+
+You should see the real-time monitoring dashboard with live metrics!
 
 ## Files in This Repository
 
+### Application Files
+- **`app.py`** - Main Flask application and API server
+- **`requirements.txt`** - Python dependencies
+- **`modules/`** - Core monitoring modules
+  - `metrics_collector.py` - System metrics collection
+  - `alert_manager.py` - Alert management and Slack notifications
+  - `data_store.py` - Metrics data storage and persistence
+- **`templates/`** - HTML templates for the web dashboard
+- **`static/`** - CSS and JavaScript for the dashboard UI
+
+### Configuration & Documentation
 - **`.env.example`** - Template for environment variables (safe to commit)
 - **`.env`** - Your actual secrets (never commit this - it's gitignored)
-- **`fix_and_push.ps1`** - PowerShell script for git operations with Slack notifications
+- **`docs/MONITORING_GUIDE.md`** - Complete monitoring system documentation
 - **`docs/API.md`** - API documentation with integration examples
 - **`SECURITY.md`** - Security best practices and secret handling guide
 - **`GIT_CLEANUP_GUIDE.md`** - How to remove secrets from git history
 
-## Using the Scripts
+### Utility Scripts
+- **`fix_and_push.ps1`** - PowerShell script for git operations with Slack notifications
+- **`check_secrets.ps1`** / **`check_secrets.sh`** - Scripts to detect secrets in your repo
+
+## Using the Monitoring System
+
+### Web Dashboard
+
+Access the real-time dashboard at `http://localhost:5000`:
+
+- **Live Metrics**: View CPU, memory, disk, and network statistics
+- **Visual Indicators**: Color-coded status badges and progress bars
+- **Alert History**: See recent alerts and notifications
+- **Controls**: Pause/resume monitoring, manual refresh, auto-refresh toggle
+
+### API Endpoints
+
+```bash
+# Get current metrics
+curl http://localhost:5000/api/metrics/current
+
+# Get metrics history
+curl http://localhost:5000/api/metrics/history?limit=100
+
+# Submit custom metrics
+curl -X POST http://localhost:5000/api/metrics/submit \
+  -H "Content-Type: application/json" \
+  -d '{"custom_metric": "value"}'
+
+# Health check
+curl http://localhost:5000/api/health
+```
+
+### Slack Alerts
+
+Configure Slack integration in your `.env` file:
+
+```bash
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+```
+
+The system will automatically send alerts to Slack when metrics exceed thresholds:
+- CPU usage > 80%
+- Memory usage > 85%
+- Disk usage > 90%
+- Swap usage > 75%
+
+Thresholds are configurable via environment variables.
 
 ### PowerShell Push Script
 
@@ -97,6 +187,7 @@ See the full guide: **[GIT_CLEANUP_GUIDE.md](GIT_CLEANUP_GUIDE.md)**
 
 ## Documentation
 
+- **[Monitoring System Guide](docs/MONITORING_GUIDE.md)** - Complete documentation for the real-time monitoring system
 - **[API Documentation](docs/API.md)** - Integration examples and API reference
 - **[Security Guide](SECURITY.md)** - Best practices for handling secrets
 - **[Git Cleanup Guide](GIT_CLEANUP_GUIDE.md)** - Remove secrets from history
