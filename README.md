@@ -2,6 +2,8 @@
 
 A real-time monitoring system for ASL (American Sign Language) applications with live dashboard, metrics collection, and Slack integration.
 
+![ASL Monitoring Dashboard](https://github.com/user-attachments/assets/2852b99d-b38f-4a94-94ac-3f5c822f0215)
+
 ## 🚀 Features
 
 ### Real-time Monitoring Dashboard
