@@ -69,9 +69,11 @@ def get_current_metrics():
             'timestamp': datetime.now().isoformat()
         })
     except Exception as e:
+        # Log the error internally
+        print(f"Error collecting metrics: {e}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': 'Failed to collect metrics'
         }), 500
 
 
@@ -86,9 +88,11 @@ def get_metrics_history():
             'data': history
         })
     except Exception as e:
+        # Log the error internally
+        print(f"Error retrieving metrics history: {e}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': 'Failed to retrieve metrics history'
         }), 500
 
 
@@ -119,9 +123,11 @@ def submit_metrics():
             'message': 'Metrics submitted successfully'
         })
     except Exception as e:
+        # Log the error internally
+        print(f"Error submitting metrics: {e}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': 'Failed to submit metrics'
         }), 500
 
 
@@ -136,9 +142,11 @@ def configure_alerts():
             'message': 'Alert thresholds updated'
         })
     except Exception as e:
+        # Log the error internally
+        print(f"Error configuring alerts: {e}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': 'Failed to configure alert thresholds'
         }), 500
 
 
@@ -153,9 +161,11 @@ def get_alert_history():
             'data': alerts
         })
     except Exception as e:
+        # Log the error internally
+        print(f"Error retrieving alert history: {e}")
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': 'Failed to retrieve alert history'
         }), 500
 
 
